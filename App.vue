@@ -1,21 +1,14 @@
 <template>
-    <h1>{{ msg }}</h1>
+  <todo-app />
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'Hello Vue!!!!!'
-    }
-  }
-}
-</script>
+import TodoApp from "./components/TodoApp";
 
-<style scoped lang="scss">
-    $color: blue;
-    h1 {
-        color: $color;
-        display: flex;
-    }
-</style>
+export default {
+  components: {
+    TodoApp,
+  },
+};
+</script>
+ß
