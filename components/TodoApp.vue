@@ -18,13 +18,46 @@
           완료된 항목 ({{ completedCount }})
         </button>
       </div>
-      <div class="actions">
-        <input 
-          v-model="allDone"
-          type="checkbox">
-        <button @click="clearCompleted">
-          완료된 항목 삭제
-        </button>
+      <div class="actions clearfix">
+        <div class="float--left">
+          <label>
+            <input
+              v-model="allDone"
+              type="checkbox"
+            />
+            <span class="icon">
+              <span class="material-icons">
+                done_all
+              </span>
+            </span>
+          </label>
+        </div>
+        <div class="float--right clearfix">
+          <button 
+            class="btn float--left"
+            @click="scrollToTop"
+          >
+            <span class="material-icons">
+                expand_less
+            </span>
+          </button>
+          <button 
+            class="btn float--left"
+            @click="scrollToBottom"
+          >
+            <span class="material-icons">
+                expand_more
+            </span>
+          </button>
+          <button 
+            class="btn btn--danger float--left"
+            @click="clearCompleted"
+          >
+              <span class="material-icons">
+                delete_sweep
+              </span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -37,8 +70,6 @@
         @delete-todo = "deleteTodo"
       />
     </div>
-
-    <hr />
 
     <todo-creator
       class="todo-app__creator"
@@ -55,7 +86,7 @@ import _find from "lodash/find"
 import _assign from "lodash/assign"
 import _findIndex from "lodash/findIndex"
 import _forEachRight from "lodash/forEachRight"
-
+import scrollTo from "scroll-to"
 import TodoCreator from "./TodoCreator";
 import TodoItem from "./TodoItem";
 
@@ -213,13 +244,27 @@ export default {
          this.deleteTodo(todo)
        }
      })
-    }
+    },
+
+    //스크롤 애니메이션 적용해서 올라가기
+    scrollToTop() {
+      scrollTo(0, 0, {
+        ease: 'linear',
+        // duration: 1000
+      })
+    },
+
+    //스크롤 애니메이션 적용해서 내려가기
+    scrollToBottom() {
+      scrollTo(0, document.body.scrollHeight, {
+        ease: 'linear',
+        // duration: 1000
+      })
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-  button.active {
-    font-weight: bold;
-  }
+<style lang="scss">
+  @import "../scss/style"
 </style>
