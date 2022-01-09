@@ -18,22 +18,39 @@
       />
       <div class="item__actions">
         <button
+          class="btn btn--primary"
           key="complete" 
-          @click="editedTodo">완료</button>
-        <button 
+          @click="editedTodo">
+          <span class="material-icons">
+              done
+          </span>
+        </button>
+        <button
+          class="btn" 
           key="cancel"
-          @click="offEditMode">취소</button>
+          @click="offEditMode">
+          <span class="material-icons">
+              clear
+          </span>
+        </button>
       </div>
     </div>
 
     <div 
       v-else
-      class="item__inner item--normal">
-
-      <input 
-      v-model="done"
-      type="checkbox" 
-      />
+      class="item__inner item--normal"
+    >
+      <label>
+        <input
+          v-model="done"
+          type="checkbox"
+        />
+        <span class="icon">
+          <span class="material-icons">
+                check
+          </span>
+        </span>
+      </label>
       <div class="item__title-wrap">
         <div class="item__title">
           {{ todo.title }}
@@ -44,11 +61,21 @@
       </div>
       <div class="item__actions">
         <button
+          class="btn"
           key="update" 
-          @click="onEditMode">수정</button>
+          @click="onEditMode">
+          <span class="material-icons">
+            edit
+          </span>
+        </button>
         <button 
+          class="btn btn--danger"
           key="delete"
-          @click="deleteTodo">삭제</button>
+          @click="deleteTodo">
+          <span class="material-icons">
+              delete
+          </span>
+        </button>
       </div>
     </div>
 
@@ -124,20 +151,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  .todo-item {
-    margin-bottom: 10px;
-    .item__inner {
-      display: flex;
-    }
-    .item__date {
-      font-size: 12px;
-    }
-    &.done {
-      .item__title {
-        text-decoration: line-through;
-      }
-    }
-  }
-</style>
